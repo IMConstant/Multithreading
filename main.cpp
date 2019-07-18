@@ -5,18 +5,21 @@
 #include <Poco/ThreadPool.h>
 #include <functional>
 
+#include "SQLFile.h"
+
 #define SEQUENCE_LENGTH 10
 
 volatile int currentThreadIndex = 0;
+SQLFile dataBase("simple.db");
 
 
-class SQLWritter : public Poco::Runnable {
+class SQLWriter : public Poco::Runnable {
     std::reference_wrapper<Poco::Event> event;
     int thisThreadIndex;
     int firstNumber;
 
 public:
-    explicit SQLWritter(int i, std::reference_wrapper<Poco::Event> _event) :
+    explicit SQLWriter(int i, std::reference_wrapper<Poco::Event> _event) :
             thisThreadIndex((i % 2 == 0) ? i - 1 : i + 1),
             event(_event),
             firstNumber(i) {}
@@ -41,11 +44,14 @@ public:
     }
 
     void SQLInsert() {
+        std::string str("");
+
         for (int j = (firstNumber - 1) * SEQUENCE_LENGTH + 1; j <= firstNumber * SEQUENCE_LENGTH; j++) {
-            std::cout << j << " ";
+            str += std::to_string(j) + " ";
         }
 
-        std::cout << std::endl;
+        str.pop_back();
+        dataBase.add(str);
     }
 };
 
@@ -54,8 +60,8 @@ int main() {
     Poco::ThreadPool threadPool;
 
     for (int i = 1; i <= 10; i++) {
-        auto *writter = new SQLWritter(i, event);
-        threadPool.start(*writter);
+        auto *writer = new SQLWriter(i, event);
+        threadPool.start(*writer);
     }
 
     currentThreadIndex = 1;
