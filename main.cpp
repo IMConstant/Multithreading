@@ -24,7 +24,7 @@ public:
             event(_event),
             firstNumber(i) {}
 
-    void run() {
+    void run() override {
         eventWait();
         SQLInsert();
 
@@ -44,7 +44,7 @@ public:
     }
 
     void SQLInsert() {
-        std::string str("");
+        std::string str;
 
         for (int j = (firstNumber - 1) * SEQUENCE_LENGTH + 1; j <= firstNumber * SEQUENCE_LENGTH; j++) {
             str += std::to_string(j) + " ";
