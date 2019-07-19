@@ -25,6 +25,7 @@ public:
         delete session;
     }
 
+    void read();
     void add(std::string str);
 };
 

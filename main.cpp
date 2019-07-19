@@ -68,5 +68,7 @@ int main() {
     event.set();
     threadPool.joinAll();
 
+    //dataBase.read();
+
     return 0;
 }
