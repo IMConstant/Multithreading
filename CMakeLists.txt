@@ -11,6 +11,6 @@ find_package(Poco REQUIRED COMPONENTS Data Foundation Net XML Util DataSQLite)
 #INCLUDE_DIRECTORIES("/usr/include/openssl")
 INCLUDE_DIRECTORIES("/usr/local/include/Poco")
 
-add_executable(${PROJECT_NAME} main.cpp SQLFile.cpp SQLFile.h)
+add_executable(${PROJECT_NAME} main.cpp DataBase.cpp DataBase.h)
 #target_link_libraries(${PROJECT_NAME} -lPocoFoundation -lPocoUtil -lPocoData -lPocoDataSQLite)
 target_link_libraries(${PROJECT_NAME} ${Poco_LIBRARIES})

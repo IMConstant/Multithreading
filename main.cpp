@@ -5,12 +5,12 @@
 #include <Poco/ThreadPool.h>
 #include <functional>
 
-#include "SQLFile.h"
+#include "DataBase.h"
 
 #define SEQUENCE_LENGTH 10
 
 volatile int currentThreadIndex = 0;
-SQLFile dataBase("simple.db");
+DataBase dataBase("simple.db");
 
 
 class SQLWriter : public Poco::Runnable {

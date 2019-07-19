@@ -15,13 +15,13 @@ using Poco::Data::Statement;
 
 using namespace Poco::Data::Keywords;
 
-class SQLFile {
+class DataBase {
     std::string file_name;
     Session *session;
 
 public:
-    explicit SQLFile(std::string _file_name);
-    ~SQLFile() {
+    explicit DataBase(std::string _file_name);
+    ~DataBase() {
         delete session;
     }
 
