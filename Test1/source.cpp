@@ -12,6 +12,30 @@ std::condition_variable cv;
 
 
 int main() {
+    /*
+        Can i do it like that?
+        
+        std::ofstream fout("output.txt");
+
+        #pragma omp parallel for num_threads(10) ordered
+        for (int i = 0; i < 10; i++) {
+            int num = i % 2 == 0 ? i + 1 : i - 1;
+
+            #pragma omp ordered
+            {
+                for (int j = num * 10 + 1; j <= (num + 1) * 10; j++) {
+                    fout << j << " ";
+                }
+
+                fout << std::endl;
+            }
+        }
+
+        fout.close();
+    */
+    
+    
+    
     std::vector<std::thread> threads;
     std::ofstream fout("output.txt");
 
