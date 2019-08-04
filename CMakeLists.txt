@@ -11,7 +11,7 @@ find_package(Poco REQUIRED COMPONENTS Data Foundation Net XML Util DataSQLite)
 #INCLUDE_DIRECTORIES("/usr/include/openssl")
 INCLUDE_DIRECTORIES("/usr/local/include/Poco")
 
-add_executable(ReversePairSequence Task1/source.cpp)
+add_executable(ReversePairSequence Test1/source.cpp)
 target_link_libraries(ReversePairSequence ${Poco_LIBRARIES})
 
 add_executable(${PROJECT_NAME} main.cpp DataBase.cpp DataBase.h)
